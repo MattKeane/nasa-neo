@@ -41,8 +41,8 @@ export default function App() {
   return (
     <View style={ styles.container }>
       <Header title="NASA NEO" />
-      <Button title="OPEN" onPress={ () => setOpen(true) } />
-      <Text>{ selectedDate.toLocaleDateString() }</Text>
+      <Text>Showing Near Earth Objects for { selectedDate.toLocaleDateString() }</Text>
+      <Button title="Change Date" onPress={ () => setOpen(true) } />
       <DatePicker
         modal
         mode="date"
