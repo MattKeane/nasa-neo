@@ -14,6 +14,7 @@ import DatePicker from 'react-native-date-picker'
 const { API_KEY } = process.env
 
 import Header from './components/Header'
+import Card from './components/Card'
 
 export default function App() {
   const [selectedDate, setSelectedDate] = useState(new Date())
@@ -53,7 +54,7 @@ export default function App() {
       <FlatList
         keyExtractor={ item => item.id }
         data={ nearEarthObjects }
-        renderItem={({ item }) => <Text>{ item.name }</Text>}
+        renderItem={({ item }) => <Card nearEarthObject={ item } />}
       />
     </View>
   );
