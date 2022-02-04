@@ -5,9 +5,7 @@ import {
 } from 'react-native'
 
 export default function Card({ nearEarthObject }) {
-    const { 
-        name,
-    } = nearEarthObject
+    const { name } = nearEarthObject
 
     const minDiameter = 
         nearEarthObject
