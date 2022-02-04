@@ -2,7 +2,8 @@ import {
   StyleSheet, 
   Button, 
   View,
-  Text, 
+  Text,
+  FlatList, 
 } from 'react-native';
 import { 
   useState,
@@ -17,6 +18,7 @@ import Header from './components/Header'
 export default function App() {
   const [selectedDate, setSelectedDate] = useState(new Date())
   const [open, setOpen] = useState(false)
+  const [nearEarthObjects, setNearEarthObjects] = useState([])
 
   const handleConfirm = dateInput => {
     setOpen(false)
@@ -29,7 +31,10 @@ export default function App() {
     const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${formattedDate}&end_date=${formattedDate}&api_key=${API_KEY}`
     fetch(url)
       .then(response => response.json())
-      .then(json => console.log(json))
+      .then(json => {
+        setNearEarthObjects(json.near_earth_objects[formattedDate])
+      })
+      .catch(err => console.log(err))
   }, [selectedDate])
 
   return (
@@ -44,6 +49,11 @@ export default function App() {
         date={ selectedDate }
         onConfirm={ handleConfirm }
         onCancel={ () => setOpen(false) }        
+      />
+      <FlatList
+        keyExtractor={ item => item.id }
+        data={ nearEarthObjects }
+        renderItem={({ item }) => <Text>{ item.name }</Text>}
       />
     </View>
   );
