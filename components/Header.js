@@ -6,7 +6,7 @@ import {
 import colors from '../constants/colors'
 
 export default function Header(props) {
-    return (
+return (
         <View style={ styles.header } >
             <Text style={ styles.title }>{ props.title }</Text>
         </View>
