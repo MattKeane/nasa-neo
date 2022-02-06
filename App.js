@@ -5,10 +5,12 @@ import {
   Text,
   FlatList, 
 } from 'react-native';
+
 import { 
   useState,
   useEffect,
 } from 'react'
+
 import DatePicker from 'react-native-date-picker'
 import AppLoading from 'expo-app-loading'
 import * as Font from 'expo-font'
@@ -17,6 +19,7 @@ const { API_KEY } = process.env
 
 import Header from './components/Header'
 import Card from './components/Card'
+import MainButton from './components/MainButton'
 
 function fetchFonts() {
   return Font.loadAsync({
@@ -67,7 +70,7 @@ export default function App() {
     <View style={ styles.container }>
       <Header title="NASA NEO" />
       <Text style={ styles.headingText }>Showing Near Earth Objects for { selectedDate.toLocaleDateString() }</Text>
-      <Button title="Change Date" onPress={ () => setOpen(true) } />
+      <MainButton onPress={ () => setOpen(true) }>Change Date</MainButton>
       <DatePicker
         modal
         mode="date"
@@ -108,6 +111,6 @@ const styles = StyleSheet.create({
   headingText: {
     fontFamily: 'source-sans-pro-semibold',
     fontSize: 18,
-    marginTop: 10,
+    marginVertical: 10,
   }
 });
