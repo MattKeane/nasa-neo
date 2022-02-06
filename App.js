@@ -10,17 +10,26 @@ import {
   useEffect,
 } from 'react'
 import DatePicker from 'react-native-date-picker'
+import AppLoading from 'expo-app-loading'
+import * as Font from 'expo-font'
 
 const { API_KEY } = process.env
 
 import Header from './components/Header'
 import Card from './components/Card'
 
+function fetchFonts() {
+  return Font.loadAsync({
+    'nasalization': require('./assets/fonts/nasalization-rg.otf')
+  })
+}
+
 export default function App() {
   const [selectedDate, setSelectedDate] = useState(new Date())
   const [open, setOpen] = useState(false)
   const [nearEarthObjects, setNearEarthObjects] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [apiLoading, setApiLoading] = useState(true)
+  const [fontLoading, setFontLoading] = useState(true)
 
   const handleConfirm = dateInput => {
     setOpen(false)
@@ -35,12 +44,22 @@ export default function App() {
       .then(response => response.json())
       .then(json => {
         setNearEarthObjects(json.near_earth_objects[formattedDate])
-        setLoading(false)
+        setApiLoading(false)
       })
       .catch(err => console.log(err))
 
-    return () => setLoading(true)
+    return () => setApiLoading(true)
   }, [selectedDate])
+
+  if (fontLoading) {
+    return (
+      <AppLoading
+        startAsync={ fetchFonts }
+        onFinish={ () => setFontLoading(false) }
+        onError={ err => console.log(err) }
+      />
+    )
+  }
 
   return (
     <View style={ styles.container }>
@@ -56,7 +75,7 @@ export default function App() {
         onCancel={ () => setOpen(false) }        
       />
       {
-        loading
+        apiLoading
         ?
         <Text>Loading…</Text>
         :

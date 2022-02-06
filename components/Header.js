@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     },
     title: {
         color: 'white',
-        fontSize: 18
+        fontSize: 20,
+        fontFamily: 'nasalization',
     },
 })
