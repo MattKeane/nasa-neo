@@ -55,11 +55,11 @@ export default function Card({ nearEarthObject }) {
                 <Text style={ styles.bodyText }>{ speed } MPH</Text>
             </View>
             {
-                // dangerous
-                // ?
-                // <Text style={ styles.bodyText }>This object is potentially dangerous.</Text>
-                // :
-                // <Text style={ styles.bodyText }>This object is not potentially dangerous.</Text>
+                dangerous
+                ?
+                <Text style={ styles.dangerousText }>This object is potentially dangerous.</Text>
+                :
+                <Text style={ styles.dangerousText }>This object is not potentially dangerous.</Text>
             }
         </View>
     )
@@ -97,5 +97,10 @@ const styles = StyleSheet.create({
     bodyLabel: {
         fontFamily: 'source-sans-pro-semibold',
         fontSize: 15,
+    },
+    dangerousText: {
+        fontFamily: 'source-sans-pro-regular',
+        fontSize: 15,
+        marginTop: 5,
     }
 })
