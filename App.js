@@ -17,6 +17,8 @@ import * as Font from 'expo-font'
 
 const { API_KEY } = process.env
 
+import colors from './constants/colors'
+
 import Header from './components/Header'
 import Card from './components/Card'
 import MainButton from './components/MainButton'
@@ -82,7 +84,9 @@ export default function App() {
       {
         apiLoading
         ?
-        <Text>Loading…</Text>
+        <View style={ styles.loadingContainer }>
+          <Text style={ styles.loadingText }>LOADING…</Text>
+        </View>
         :
         <FlatList
           contentContainerStyle={ styles.neoList }
@@ -112,5 +116,14 @@ const styles = StyleSheet.create({
     fontFamily: 'source-sans-pro-semibold',
     fontSize: 18,
     marginVertical: 10,
-  }
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  loadingText: {
+    color: colors.secondary,
+    fontFamily: 'nasalization',
+    fontSize: 35,
+  },
 });
