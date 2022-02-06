@@ -42,15 +42,24 @@ export default function Card({ nearEarthObject }) {
     return (
         <View style={ styles.card }>
             <Text style={ styles.headerText }>{ name }</Text>
-            <Text style={ styles.bodyText }>Diameter: { minDiameter }–{ maxDiameter} ft.</Text>
-            <Text style={ styles.bodyText }>Miss Distance: { missDistance } mi.</Text>
-            <Text style={ styles.bodyText }>Speed: { speed } MPH</Text>
+            <View style={ styles.bodyField}>
+                <Text style={ styles.bodyLabel }>Diameter:</Text> 
+                <Text style={ styles.bodyText }>{ minDiameter }–{ maxDiameter } ft.</Text>
+            </View>
+            <View style={ styles.bodyField}>
+                <Text style={ styles.bodyLabel }>Miss Distance:</Text> 
+                <Text style={ styles.bodyText }>{ missDistance } mi.</Text>
+            </View>
+            <View style={ styles.bodyField }>
+                <Text style={ styles.bodyLabel }>Speed:</Text>
+                <Text style={ styles.bodyText }>{ speed } MPH</Text>
+            </View>
             {
-                dangerous
-                ?
-                <Text style={ styles.bodyText }>This object is potentially dangerous.</Text>
-                :
-                <Text style={ styles.bodyText }>This object is not potentially dangerous.</Text>
+                // dangerous
+                // ?
+                // <Text style={ styles.bodyText }>This object is potentially dangerous.</Text>
+                // :
+                // <Text style={ styles.bodyText }>This object is not potentially dangerous.</Text>
             }
         </View>
     )
@@ -69,11 +78,24 @@ const styles = StyleSheet.create({
         elevation: 5,
         padding: 20,
         borderRadius: 10,
+        marginTop: 10,
+        width: 275,
     },
     bodyText: {
         fontFamily: 'source-sans-pro-regular',
+        fontSize: 15,
     },
     headerText: {
         fontFamily: 'source-sans-pro-semibold',
+        fontSize: 18,
+        marginBottom: 5,
+    },
+    bodyField: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    bodyLabel: {
+        fontFamily: 'source-sans-pro-semibold',
+        fontSize: 15,
     }
 })

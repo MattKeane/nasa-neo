@@ -82,6 +82,7 @@ export default function App() {
         <Text>Loading…</Text>
         :
         <FlatList
+          contentContainerStyle={ styles.neoList }
           keyExtractor={ item => item.id }
           data={ nearEarthObjects }
           renderItem={({ item }) => <Card nearEarthObject={ item } />}
@@ -97,4 +98,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
   },
+  neoList: {
+    alignItems: 'center',
+    width: '80%',
+    minWidth: 300,
+    maxWidth: '90%',
+    padding: 10,
+  }
 });
