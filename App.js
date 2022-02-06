@@ -20,6 +20,7 @@ export default function App() {
   const [selectedDate, setSelectedDate] = useState(new Date())
   const [open, setOpen] = useState(false)
   const [nearEarthObjects, setNearEarthObjects] = useState([])
+  const [loading, setLoading] = useState(true)
 
   const handleConfirm = dateInput => {
     setOpen(false)
@@ -34,8 +35,11 @@ export default function App() {
       .then(response => response.json())
       .then(json => {
         setNearEarthObjects(json.near_earth_objects[formattedDate])
+        setLoading(false)
       })
       .catch(err => console.log(err))
+
+    return () => setLoading(true)
   }, [selectedDate])
 
   return (
@@ -51,11 +55,17 @@ export default function App() {
         onConfirm={ handleConfirm }
         onCancel={ () => setOpen(false) }        
       />
-      <FlatList
-        keyExtractor={ item => item.id }
-        data={ nearEarthObjects }
-        renderItem={({ item }) => <Card nearEarthObject={ item } />}
-      />
+      {
+        loading
+        ?
+        <Text>Loading…</Text>
+        :
+        <FlatList
+          keyExtractor={ item => item.id }
+          data={ nearEarthObjects }
+          renderItem={({ item }) => <Card nearEarthObject={ item } />}
+        />
+      }
     </View>
   );
 }
