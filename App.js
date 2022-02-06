@@ -66,7 +66,7 @@ export default function App() {
   return (
     <View style={ styles.container }>
       <Header title="NASA NEO" />
-      <Text>Showing Near Earth Objects for { selectedDate.toLocaleDateString() }</Text>
+      <Text style={ styles.headingText }>Showing Near Earth Objects for { selectedDate.toLocaleDateString() }</Text>
       <Button title="Change Date" onPress={ () => setOpen(true) } />
       <DatePicker
         modal
@@ -104,5 +104,10 @@ const styles = StyleSheet.create({
     minWidth: 300,
     maxWidth: '90%',
     padding: 10,
+  },
+  headingText: {
+    fontFamily: 'source-sans-pro-semibold',
+    fontSize: 18,
+    marginTop: 10,
   }
 });
