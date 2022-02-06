@@ -20,7 +20,9 @@ import Card from './components/Card'
 
 function fetchFonts() {
   return Font.loadAsync({
-    'nasalization': require('./assets/fonts/nasalization-rg.otf')
+    'nasalization': require('./assets/fonts/nasalization-rg.otf'),
+    'source-sans-pro-regular': require('./assets/fonts/SourceSansPro-Regular.ttf'),
+    'source-sans-pro-semibold': require('./assets/fonts/SourceSansPro-SemiBold.ttf')
   })
 }
 

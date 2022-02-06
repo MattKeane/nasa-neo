@@ -41,16 +41,16 @@ export default function Card({ nearEarthObject }) {
 
     return (
         <View style={ styles.card }>
-            <Text>{ name }</Text>
-            <Text>Diameter: { minDiameter }–{ maxDiameter} ft.</Text>
-            <Text>Miss Distance: { missDistance } mi.</Text>
-            <Text>Speed: { speed } MPH</Text>
+            <Text style={ styles.headerText }>{ name }</Text>
+            <Text style={ styles.bodyText }>Diameter: { minDiameter }–{ maxDiameter} ft.</Text>
+            <Text style={ styles.bodyText }>Miss Distance: { missDistance } mi.</Text>
+            <Text style={ styles.bodyText }>Speed: { speed } MPH</Text>
             {
                 dangerous
                 ?
-                <Text>This object is potentially dangerous.</Text>
+                <Text style={ styles.bodyText }>This object is potentially dangerous.</Text>
                 :
-                <Text>This object is not potentially dangerous.</Text>
+                <Text style={ styles.bodyText }>This object is not potentially dangerous.</Text>
             }
         </View>
     )
@@ -69,5 +69,11 @@ const styles = StyleSheet.create({
         elevation: 5,
         padding: 20,
         borderRadius: 10,
+    },
+    bodyText: {
+        fontFamily: 'source-sans-pro-regular',
+    },
+    headerText: {
+        fontFamily: 'source-sans-pro-semibold',
     }
 })
