@@ -1,6 +1,5 @@
 import { 
-  StyleSheet, 
-  Button, 
+  StyleSheet,  
   View,
   Text,
   FlatList, 
@@ -15,14 +14,18 @@ import DatePicker from 'react-native-date-picker'
 import AppLoading from 'expo-app-loading'
 import * as Font from 'expo-font'
 
+// Environment variables
 const { API_KEY } = process.env
 
+//  App Constants
 import colors from './constants/colors'
 
+// Components
 import Header from './components/Header'
 import Card from './components/Card'
 import MainButton from './components/MainButton'
 
+// Fonts
 function fetchFonts() {
   return Font.loadAsync({
     'nasalization': require('./assets/fonts/nasalization-rg.otf'),
@@ -32,17 +35,20 @@ function fetchFonts() {
 }
 
 export default function App() {
+  //  State
   const [selectedDate, setSelectedDate] = useState(new Date())
   const [open, setOpen] = useState(false)
   const [nearEarthObjects, setNearEarthObjects] = useState([])
   const [apiLoading, setApiLoading] = useState(true)
   const [fontLoading, setFontLoading] = useState(true)
 
+  // Handles date changes from datepicker modal
   const handleConfirm = dateInput => {
     setOpen(false)
     setSelectedDate(dateInput)
   }
 
+  // Loads NEOs from API on initial load and when new date is selected
   useEffect(() => {
     // putting date into correct format
     const formattedDate = selectedDate.toISOString().split('T')[0]
@@ -51,13 +57,16 @@ export default function App() {
       .then(response => response.json())
       .then(json => {
         setNearEarthObjects(json.near_earth_objects[formattedDate])
+        // stop showing loading message once API response is received
         setApiLoading(false)
       })
       .catch(err => console.log(err))
-
+    
+    // show loading message when selectedDate changes
     return () => setApiLoading(true)
   }, [selectedDate])
 
+  // show loading screen until fonts load
   if (fontLoading) {
     return (
       <AppLoading
@@ -68,6 +77,7 @@ export default function App() {
     )
   }
 
+  // Main App Render
   return (
     <View style={ styles.container }>
       <Header title="NASA NEO" />
@@ -99,6 +109,7 @@ export default function App() {
   );
 }
 
+// Styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,

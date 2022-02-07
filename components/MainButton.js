@@ -5,6 +5,7 @@ import {
     StyleSheet
 } from 'react-native'
 
+// app constants
 import colors from '../constants/colors'
 
 export default function MainButton(props) {
@@ -17,6 +18,7 @@ export default function MainButton(props) {
     )
 }
 
+// styles
 const styles = StyleSheet.create({
     button: {
         backgroundColor: colors.secondary,

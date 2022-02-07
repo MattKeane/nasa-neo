@@ -3,6 +3,8 @@ import {
     Text,
     StyleSheet,
 } from 'react-native'
+
+// app constants
 import colors from '../constants/colors'
 
 export default function Header(props) {
@@ -13,6 +15,7 @@ return (
     )
 }
 
+// styles
 const styles = StyleSheet.create({
     header: {
         width: '100%',

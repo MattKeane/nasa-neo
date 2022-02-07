@@ -4,9 +4,14 @@ import {
     StyleSheet,
 } from 'react-native'
 
+// props destructured
 export default function Card({ nearEarthObject }) {
+    // destructure name from nearEarthObject
     const { name } = nearEarthObject
 
+    // Consider formatting large numbers to include commas
+
+    // Object minimum diameter
     const minDiameter = 
         nearEarthObject
             .estimated_diameter
@@ -14,6 +19,7 @@ export default function Card({ nearEarthObject }) {
             .estimated_diameter_min
             .toFixed(2)
 
+    // Object maximum diameter
     const maxDiameter =
         nearEarthObject
             .estimated_diameter
@@ -21,6 +27,7 @@ export default function Card({ nearEarthObject }) {
             .estimated_diameter_max
             .toFixed(2)
 
+    // Object miss distance
     const missDistance =
         parseInt(
             nearEarthObject
@@ -29,6 +36,8 @@ export default function Card({ nearEarthObject }) {
                 .miles
         )
 
+
+    // Object speed
     const speed =
         parseInt(
             nearEarthObject
@@ -37,6 +46,7 @@ export default function Card({ nearEarthObject }) {
                 .miles_per_hour
         )
 
+    // Is this object dangerous
     const dangerous = nearEarthObject.is_potentially_hazardous_asteroid       
 
     return (
@@ -65,6 +75,7 @@ export default function Card({ nearEarthObject }) {
     )
 }
 
+// Styles
 const styles = StyleSheet.create({
     card: {
         shadowColor: 'black',
